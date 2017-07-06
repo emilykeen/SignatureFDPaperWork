@@ -42,6 +42,8 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+app.set("views", __dirname);
+
 app.use("/", authRoutes);
 
 app.use("/login", authRoutes);

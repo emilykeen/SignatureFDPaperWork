@@ -12,7 +12,7 @@ $("#login-btn").on("click", function() {
       "Authorization": "Bearer " + Cookies.get("authToken")
     };
 
-    $.get("/", {headers: headers, user: userCredentials}).done(function(data) {
+    $.get("/", {headers: headers}).done(function(data) {
       console.log("frontend get route: " + data);
     });
 

@@ -1,8 +1,32 @@
-// $("#login-btn").on("click", function() {
+$("#login-btn").on("click", function() {
   
-//   $.get("/reactIndex", function(data) {
-//     console.log("success");
-//     console.log(data);
-//   });
+  var userCredentials = {
+    email: $("#email").val().trim(),
+    password: $("#password").val().trim()
+  };
 
-// });
+  $.post("/login", userCredentials).done(function(data) {
+    console.log("frontend post route: " + data);
+    
+    var headers = {
+      "Authorization": "Bearer " + Cookies.get("authToken")
+    };
+
+    $.get("/", {headers: headers}).done(function(data) {
+      console.log("frontend get route: " + data);
+    });
+
+    // $.ajax({
+    //   url: "/",
+    //   type: "GET",
+    //   headers: {
+    //     "Authorization": "Bearer " + Cookies.get("authToken")
+    //   }
+    // }).done(function(data) {
+    //   console.log("protected data: " + data);
+    // });
+  });
+
+  
+
+});

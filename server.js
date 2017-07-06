@@ -44,7 +44,7 @@ db.once("open", function() {
 
 app.use("/", authRoutes);
 
-// app.use("/login", authRoutes);
+app.use("/login", authRoutes);
 app.use("/login", express.static("./public"));
 
 // app.use("/", jwtExp({

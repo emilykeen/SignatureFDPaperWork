@@ -8,7 +8,7 @@ var User = require("./../models/user.js");
 var tokenSecret = "abcdefghijklmnopqrstuvwxyz";
 
 authRouter.get("/", function(req, res) {
-    res.send("index.html");
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 authRouter.post("/", function(req, res, next) {

@@ -6,11 +6,12 @@ var path = require("path");
 var User = require("./../models/user.js")
 
 router.get("/", function(req, res) {
-    res.send("index.html");
+    res.sendFile(path.join(__dirname, "../public/ReactIndex.html"));
 });
 
 router.get("/data", function(req, res) {
-    User.find({"email": "user@signaturefd.com"}, function(error, doc) {
+    console.log("/data get route: " + req.body);
+    User.find({"email": req.body.user.email}, function(error, doc) {
         if (error) {
             res.send("GET error: " + error);
         } else {
@@ -21,6 +22,7 @@ router.get("/data", function(req, res) {
 });
 
 router.post("/data", function(req, res) {
+    console.log(req.body);
     console.log(req.body.email);
 
     User.findOneAndUpdate({
@@ -42,28 +44,6 @@ router.post("/data", function(req, res) {
 });
 
 
-router.get("/Handbook", function(req, res) {
-    User.find({}, function(error, doc) {
-        if (error) {
-            res.send(error);
-        } else {
-            res.send(doc);
-        }
-    });
-});
-router.get("/FirmDirectory", function(req, res) {
-    User.find({}, function(error, doc) {
-        if (error) {
-            res.send(error);
-        } else {
-            res.send(doc);
-        }
-    });
-});
 
-
-router.get("/reactIndex", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/ReactIndex.html"));
-});
 
 module.exports = router;

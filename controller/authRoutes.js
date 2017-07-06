@@ -5,7 +5,9 @@ var authRouter = express.Router();
 var path = require("path");
 var User = require("./../models/user.js");
 
+
 var tokenSecret = "abcdefghijklmnopqrstuvwxyz";
+
 
 authRouter.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));

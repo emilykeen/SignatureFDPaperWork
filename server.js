@@ -43,8 +43,6 @@ db.once("open", function() {
 });
 
 
-// app.use("/", authRoutes);
-
 app.use("/auth", authRoutes);
 app.use("/auth", express.static("./public"));
 

@@ -42,7 +42,9 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-app.use("/login", authRoutes);
+app.use("/", authRoutes);
+
+// app.use("/login", authRoutes);
 app.use("/login", express.static("./public"));
 
 // app.use("/", jwtExp({
@@ -68,7 +70,7 @@ app.use("/login", express.static("./public"));
 //   }
 // });
 
-app.use("/", appController);
+// app.use("/", appController);
 // app.use("/", express.static("./public"));
 
 

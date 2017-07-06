@@ -26,7 +26,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(cookieParser(tokenSecret));
 
-// app.use(express.static("./public"));
+app.use(express.static("./public"));
 
 
 // MongoDB Configuration configuration
@@ -42,38 +42,37 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-app.set("views", __dirname);
 
-app.use("/", authRoutes);
+// app.use("/", authRoutes);
 
-app.use("/login", authRoutes);
-app.use("/login", express.static("./public"));
+app.use("/auth", authRoutes);
+app.use("/auth", express.static("./public"));
 
-// app.use("/", jwtExp({
-//   secret: tokenSecret,
-//   credentialsRequired: false,
-//   getToken: function fromCookie(req) {
+app.use("/", jwtExp({
+  secret: tokenSecret,
+  credentialsRequired: false,
+  getToken: function fromCookie(req) {
 
-//     console.log("getToken fromCookie: " + req.body);
+    console.log("getToken fromCookie: " + JSON.stringify(req.body, null, 2));
 
-//     // if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
-//     //   return req.headers.authorization.split(" ")[1];
-//     // } else if (req.query && req.query.token) {
-//     //   return req.query.token;
-//     // }
-//     // return null;
-//   }
-// }), function(req, res, next) {
-//   if (req.user) {
-//     console.log(req.user);
-//     next();
-//   } else {
-//     res.redirect("/login");
-//   }
-// });
+    if (req.headers.authorization && req.headers.authorization.split(" ")[0] === "Bearer") {
+      return req.headers.authorization.split(" ")[1];
+    } else if (req.query && req.query.token) {
+      return req.query.token;
+    }
+    return null;
+  }
+}), function(req, res, next) {
+  if (req.user) {
+    console.log(req.user);
+    next();
+  } else {
+    res.redirect("/auth/login");
+  }
+});
 
-// app.use("/", appController);
-// app.use("/", express.static("./public"));
+app.use("/", appController);
+app.use("/", express.static("./public"));
 
 
 app.listen(PORT, function() {

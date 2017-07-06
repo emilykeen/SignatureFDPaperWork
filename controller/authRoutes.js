@@ -7,11 +7,11 @@ var User = require("./../models/user.js");
 
 var tokenSecret = "abcdefghijklmnopqrstuvwxyz";
 
-authRouter.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+authRouter.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-authRouter.post("/", function(req, res, next) {
+authRouter.post("/login", function(req, res, next) {
 
   User.find({"email": req.body.email}, function(error, doc) {
     if (error) {

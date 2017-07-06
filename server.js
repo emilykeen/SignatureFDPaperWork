@@ -43,8 +43,8 @@ db.once("open", function() {
 });
 
 
-app.use("/auth", authRoutes);
-app.use("/auth", express.static("./public"));
+// app.use("/auth", authRoutes);
+// app.use("/auth", express.static("./public"));
 
 // app.use("/", jwtExp({
 //   secret: tokenSecret,

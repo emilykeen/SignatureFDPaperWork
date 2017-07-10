@@ -1,6 +1,6 @@
 var React = require("react");
 var ReactDOMServer = require('react-dom/server');
-var Fitness = require('../forms/Fitness');
+var CanvasReact = require('./employeeComponents/CanvasReact');
 var FileSaver = require('file-saver');
 
 
@@ -56,12 +56,12 @@ var employeeLayout = React.createClass({
   },
     printPDF: function(){
 
-        const doc = ReactDOMServer.renderToString(<Fitness />);
+        const doc = ReactDOMServer.renderToStaticMarkup(<CanvasReact />);
 
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
 
-        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
+        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">' +
             '<foreignObject width="100%" height="100%">' +
             doc +
             '</foreignObject>' +
@@ -149,7 +149,7 @@ var employeeLayout = React.createClass({
                 <div>
                   <div className="row">
                     <ul className="left" style={{marginRight: "30%"}}>
-                      <a className="list-group-item" href="#"><i className="fa fa-download fa-2x" aria-hidden="true"><span id="downBtn" ></span></i></a>
+                      <a className="list-group-item" href="#" onClick={this.printPDF}><i className="fa fa-download fa-2x" aria-hidden="true"><span id="downBtn" ></span></i></a>
     </ul>
                   </div>
                 </div>

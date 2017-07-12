@@ -3,11 +3,13 @@
  */
 var React = require("react");
 
-var Fitness = require('../forms/PulseFitnessAgreement');
+var PulseFitness = require('../forms/PulseFitnessAgreement');
 
 var CanvasReact = React.createClass({
     render: function(){
-
+        return (
+            <canvas id="canvas"></canvas>
+        );
     }
 
 });

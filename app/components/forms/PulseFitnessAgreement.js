@@ -1,13 +1,29 @@
 var React = require("react");
+var InlineCss = require('react-inline-css');
 
-var Fitness = React.createClass({
+var PulseFitness = React.createClass({
 
   render: function() {
     return (
+        <InlineCss stylesheet={`
+            #date {
+              margin-top: 13.3%;
+              margin-left: 49%;
+              width: 20%;
+              height: 2%;
+            }
+
+            #name {
+              margin-top: 28.2%;
+              margin-left: 52.8%;
+              width: 30%;
+              height: 2%;
+            }
+
+        `}>
           <form>
-              <canvas id="canvas">
               <div className="input-field">
-              <input name="Date" type="date"
+              <input id="date" name="Date" type="date"
                 className="date absolute"
                 style={{
                   top: "13.3%",
@@ -115,11 +131,11 @@ var Fitness = React.createClass({
             <div>
               <img className="page" src="assets/images/PulseFitnessAgreement_4.jpeg" alt="" />
             </div>
-              </canvas>
           </form>
+        </InlineCss>
 
     );
   }
 });
 
-module.exports = Fitness;
+module.exports = PulseFitness;

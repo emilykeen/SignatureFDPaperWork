@@ -1,6 +1,6 @@
 var React = require("react");
 var ReactDOMServer = require('react-dom/server');
-var CanvasReact = require('./employeeComponents/CanvasReact');
+var PulseFitness = require('../forms/PulseFitnessAgreement');
 var FileSaver = require('file-saver');
 
 
@@ -56,33 +56,57 @@ var employeeLayout = React.createClass({
   },
     printPDF: function(){
 
-        const doc = ReactDOMServer.renderToStaticMarkup(<CanvasReact />);
+        var formWithProps = React.Children.map(this.props.children,
+            (child) => React.cloneElement(child, {
+                appState: this.state
+            })
+        );
 
-        var canvas = document.getElementById('canvas');
+        const doc = ReactDOMServer.renderToStaticMarkup(<div>{formWithProps}</div>);
+
+        var canvas = this.refs.printCanvas;
+        canvas.width = 1700;
+        canvas.height = 2200;
         var ctx = canvas.getContext('2d');
 
-        var data = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">' +
+        var textSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">' +
             '<foreignObject width="100%" height="100%">' +
-            doc +
+            '<div xmlns="http://www.w3.org/1999/xhtml">' +
+                doc +
+            '</div>' +
             '</foreignObject>' +
             '</svg>';
 
-        var DOMURL = window.URL || window.webkitURL || window;
+        // var DOMURL = window.URL || window.webkitURL || window;
 
-        var img = new Image();
-        var svg = new Blob([data], {type: 'image/svg+xml'});
-        var url = DOMURL.createObjectURL(svg);
 
-        img.onload = function() {
-            ctx.drawImage(img, 0, 0);
-            DOMURL.revokeObjectURL(url);
-        };
+        var background = new Image();
+// Make sure the image is loaded first otherwise nothing will draw.
+        background.onload = function() {
+            ctx.drawImage(background,0,0);
 
-        img.src = url;
+            var textImg = new Image();
+            // var svg = new Blob([data], {type: 'image/svg+xml'});
+            // var url = DOMURL.createObjectURL(svg);
 
-        canvas.toBlob(function(blob) {
-            FileSaver.saveAs(blob, "fitness.png");
-        });
+            // textImg.setAttribute('crossOrigin', 'anonymous');
+            textImg.onload = function() {
+
+                ctx.drawImage(textImg, 0, 0);
+                canvas.toBlob(function(blob) {
+                    FileSaver.saveAs(blob, "fitness.png");
+                });
+                // DOMURL.revokeObjectURL(url);
+            };
+
+            textImg.src = 'data:image/svg+xml;utf8,'+textSvg;
+            // textImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px"><em>I</em> like<h1>mmm</h1><span style="color:white; text-shadow:0 0 2px blue;">cheese</span></div></foreignObject></svg>';
+
+        }
+
+        background.src = "/assets/images/PulseFitnessAgreement_3.jpeg";
+
+
 
     },
 
@@ -149,7 +173,7 @@ var employeeLayout = React.createClass({
                 <div>
                   <div className="row">
                     <ul className="left" style={{marginRight: "30%"}}>
-                      <a className="list-group-item" href="#" onClick={this.printPDF}><i className="fa fa-download fa-2x" aria-hidden="true"><span id="downBtn" ></span></i></a>
+                      <a className="list-group-item" onClick={this.printPDF}><i className="fa fa-download fa-2x" aria-hidden="true"><span id="downBtn" ></span></i></a>
     </ul>
                   </div>
                 </div>
@@ -157,7 +181,8 @@ var employeeLayout = React.createClass({
             </nav>
           </div>
         </header>
-
+          <img src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><foreignObject width="100%" height="100%"><h1>Hello World</h1></foreignObject></svg>'/>
+        <canvas ref="printCanvas"></canvas>
         <main>
           {childrenWithProps}
         </main>

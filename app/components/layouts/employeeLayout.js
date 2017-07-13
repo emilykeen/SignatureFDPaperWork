@@ -114,7 +114,7 @@ var employeeLayout = React.createClass({
 
         var docDefinition = {
             background: [{
-                image: '../../..    /public/assets/images/PulseFitnessAgreement_3.jpg'
+                image: '/assets/images/PulseFitnessAgreement_3.jpeg'
             }],
             content: [{
 

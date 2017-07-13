@@ -46,8 +46,13 @@ header, main, footer {
     position: fixed;
     height: 140px;
 }
+footer{
+    height: 440px;
+}
 
-
+.content {
+    min-height: calc(100vh - 440px);
+}
 
 .btn, .btn:hover, .btn-large:hover, .btn:after, .btn:before{
     background-color: #8DD4F0;
@@ -180,4 +185,10 @@ nav ul a {
     .side-nav a {
         padding: 0;
     }
+}
+#PrimaryBeneficiary{
+    background: white;
+}
+#ContingentBenficiary{
+background: white;
 }

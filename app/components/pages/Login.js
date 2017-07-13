@@ -55,7 +55,7 @@ var Login = React.createClass({
                 <div className="input-field col s12">
                   <input placeholder="Password" type="password"
                   id="password" className="validate" />
-                  <label htmlFor="password">Password from Welcome Email</label>
+                  <label htmlFor="password">Password</label>
                 </div>
               </div>
             </form>

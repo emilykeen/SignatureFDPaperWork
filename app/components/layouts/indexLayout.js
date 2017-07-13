@@ -4,6 +4,7 @@ var indexLayout = React.createClass({
   render: function() {
     return (
       <div>
+        <div className="content">
         <header style={{paddingLeft: "0px"}}>
           <div className="navbar-fixed">
             <nav className="nav-extended  FDbrownLight white-text" role="navigation">
@@ -20,7 +21,7 @@ var indexLayout = React.createClass({
           {this.props.children}
         </main>
 
-
+        </div>
         <footer className="page-footer FDbrownLight white-text" style={{paddingLeft: "0px"}}>
           <div className="container">
             <div className="row">
@@ -55,8 +56,8 @@ var indexLayout = React.createClass({
             <div className="container">
               <p>©2016 SignatureFD. All rights reserved. &nbsp;<span style={{color: "#ffffff"}}>&nbsp;
                 <a href="http://www.signaturefd.com/definitions">Definitions</a> |
-                <a href="http://www.signaturefd.com/privacy">Privacy</a> |
-                <a href="http://www.signaturefd.com/disclosure-information">Disclosure</a>&nbsp;&nbsp;&nbsp;</span>
+                <a href="http://www.signaturefd.com/privacy"> Privacy</a> |
+                <a href="http://www.signaturefd.com/disclosure-information"> Disclosure</a>&nbsp;&nbsp;&nbsp;</span>
                 <a target="_blank" href="https://twitter.com/SignatureFD">&nbsp;&nbsp;&nbsp;<i className="fa fa-fw fa-twitter fa-lg" aria-hidden="true"></i></a>
                 <a target="_blank" href="https://www.facebook.com/SignatureFD/">&nbsp;<i className="fa fa-fw fa-facebook fa-lg" aria-hidden="true"></i></a>
                 <a target="_blank" href="https://www.linkedin.com/company/signaturefd">&nbsp;<i className="fa fa-fw fa-linkedin fa-lg" aria-hidden="true"></i></a>

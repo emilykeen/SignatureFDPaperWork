@@ -3,6 +3,7 @@ var React = require("react");
 var Handbook = React.createClass({
   render: function() {
     return (
+      <form>
       <div>
         <div>
           <img className="page" src="assets/images/SignatureFDComputer&NetworkPolicyHandbook_1.jpeg" alt="" />
@@ -53,9 +54,29 @@ var Handbook = React.createClass({
           <img className="page" src="assets/images/SignatureFDComputer&NetworkPolicyHandbook_16.jpeg" alt="" />
         </div>
         <div>
+        <div className="input-field">
+          <input id="name" name="FirstName"
+            className="absolute" type="text"
+            style={{
+              top: "79.5%",
+              left: "11.8%",
+              width: "76%",
+              height: "2%"}}
+            value={this.props.appState.FirstName.trim()} 
+            onChange={this.props.handleChange} 
+            />
+            <input name="Date" type="date"
+            className="date absolute"
+            style={{
+              top: "85%",
+              left: "57.8%",
+              width: "30.3%",
+              height: "2%"}} />
           <img className="page" src="assets/images/SignatureFDComputer&NetworkPolicyHandbook_17.jpeg" alt="" />
         </div>
       </div>
+      </div>
+      </form>
     );
   }
 });

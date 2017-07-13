@@ -71,7 +71,7 @@ var UserSchema = new Schema({
     Gender: {
         type: String
     },
-    AccessCard: {
+    GymAccessCard: {
         type: String
     },
     EmailAddress: {

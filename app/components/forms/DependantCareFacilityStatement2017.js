@@ -5,7 +5,7 @@ var Handbook = React.createClass({
     return (
       <div>
         <div>
-          <img className="page" src="assets/images/DependantCareFacilityStatement2017_1.jpeg" alt="" />
+          <img className="page" src="/assets/images/DependantCareFacilityStatement2017_1.jpeg" alt="" />
         </div>
       </div>
     );

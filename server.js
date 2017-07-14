@@ -6,6 +6,9 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var appController = require("./controller/app_controller");
 var authController = require("./controller/auth_controller");
+var employeeController = require("./controller/employee_controller");
+var adminController = require("./controller/admin_controller");
+var jwtExp = require("express-jwt");
 
 // Require Schemas
 var Admin = require("./models/admin.js");
@@ -15,7 +18,7 @@ var User = require("./models/user.js");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-var tokenSecret = "bcdefghijklmnopqrstuvwxyz";
+var tokenSecret = "abcdefghijklmnopqrstuvwxyz";
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -42,17 +45,53 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
-
-
-
-// app.use("/", function(req, res) {
-//   console.log("cookies: " + req.cookies);
-// });
+var path = require("path");
 
 app.use("/", appController);
 
-app.use("/auth", express.static("./public"));
 app.use("/auth", authController);
+
+
+app.use("/employee", jwtExp({
+  secret: tokenSecret,
+  getToken: function fromCookie(req) {
+    if (req.signedCookies) {
+      return req.signedCookies.empToken;
+    }
+    return null;
+  }
+}));
+
+app.use("/employee", function(err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    res.redirect("/");
+  }
+});
+
+app.use("/employee", employeeController);
+
+app.use("/admin", jwtExp({
+  secret: tokenSecret,
+  getToken: function fromCookie(req) {
+    if (req.signedCookies) {
+      return req.signedCookies.adminToken;
+    }
+    return null;
+  }
+}));
+
+app.use("/admin", function(err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    res.redirect("/");
+  }
+});
+
+app.use("/admin", adminController);
+
+
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'views', 'index.html'))
+});
 
 
 app.listen(PORT, function() {

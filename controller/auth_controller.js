@@ -7,9 +7,9 @@ var User = require("./../models/user");
 var Admin = require("./../models/admin");
 var tokenSecret = "abcdefghijklmnopqrstuvwxyz";
 
-// authRouter.get("/login", function(req, res, next) {
-//   res.sendFile(path.join(__dirname, "../views/index.html"));
-// });
+authRouter.get("/login", function(req, res, next) {
+  res.sendFile(path.join(__dirname, "../views/index.html"));
+});
 
 authRouter.post("/login", function(req, res, next) {
 
@@ -24,20 +24,26 @@ authRouter.post("/login", function(req, res, next) {
         if (err || !valid) {
           res.send({ success: false, message: "Invalid username or password." });
         } else {
+
           var jwtAuthToken = jwt.sign({
             exp: Math.floor(Date.now() / 1000) + (60 * 60),
-            user: {
-              userId: doc._id,
-              username: doc.EmailAddress
+            employee: {
+              id: doc._id,
+              email: doc.EmailAddress,
+              auth_lvl: "employee"
             }
           }, tokenSecret);
 
-          res.cookie('empAccessToken', jwtAuthToken, {
-            secure: process.env.NODE_ENV === 'production',
-            signed: true
-          });
+            res.cookie('empToken', jwtAuthToken, {
+              secure: process.env.NODE_ENV === 'production',
+              signed: true
+            });
 
-          res.send({ success: true, message: "Employee login successful.", authorization: "employee" });
+          if (doc.isNewEmployee === true) {
+            res.send({ success: true, message: "Employee login successful.", auth_lvl: "employee", isNew: true });
+          } else {
+            res.send({ success: true, message: "Employee login successful.", auth_lvl: "employee", isNew: false });
+          }
         }
       });
     } else {
@@ -56,17 +62,18 @@ authRouter.post("/login", function(req, res, next) {
 
               var jwtAuthToken = jwt.sign({
                 exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                user: {
-                  userId: doc._id,
-                  username: doc.EmailAddress
+                admin: {
+                  id: doc._id,
+                  email: doc.EmailAddress,
+                  auth_lvl: "admin"
                 }
               }, tokenSecret);
 
-              res.cookie('adminAuthToken', jwtAuthToken, {
+              res.cookie('adminToken', jwtAuthToken, {
                 secure: process.env.NODE_ENV === 'production',
                 signed: true
               });
-              res.send({ success: true, message: "Admin login successful.", authorization: "admin" });
+              res.send({ success: true, message: "Admin login successful.", auth_lvl: "admin" });
             }
           });
         } else {
@@ -77,50 +84,11 @@ authRouter.post("/login", function(req, res, next) {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Add use to database...
-// authRouter.post("/updatePassword", function(req, res) {
-
-//   // Generate salt in 10 rounds
-//   bcrypt.genSalt(10, function(err, salt) {
-
-//     // If error, render register page with error status
-//     if (err) {
-//       console.log("there is an error");
-//       res.render("register", {
-//         status: "Unable to create username with password provided."
-//       });
-
-//       // If no error...
-//     } else {
-
-//       // Hash password and create user
-//       bcrypt.hash(req.body.password, salt, function(err, hash) {
-//         // ******store user password in mongodb******
-//         //
-//         //
-//         //
-//         //
-//         //
-//       });
-//     }
-//   });
-// });
-
-
-
-
+authRouter.get("/logout", function(req, res) {
+  res.clearCookie("empToken");
+  res.clearCookie("adminToken");
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.send({ success: true });
+});
 
 module.exports = authRouter;

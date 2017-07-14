@@ -5,10 +5,10 @@ var Handbook = React.createClass({
     return (
       <div>
         <div>
-          <img className="page" src="assets/images/FormW4_1.jpeg" alt="" />
+          <img className="page" src="/assets/images/FormW4_1.jpeg" alt="" />
         </div>
         <div>
-          <img className="page" src="assets/images/FormW4_2.jpeg" alt="" />
+          <img className="page" src="/assets/images/FormW4_2.jpeg" alt="" />
         </div>
       </div>
     );

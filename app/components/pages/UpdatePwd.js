@@ -13,10 +13,17 @@ var UpdatePwd = React.createClass({
   },
 
   handleSubmit: function(e) {
-    e.preventDefault();
 
-    window.location = "#/employee/welcome";
-      location.reload();
+    var employeeUpdate = {
+      email: document.getElementById("email").value.trim(),
+      password: document.getElementById("passwordNew").value.trim()
+    };
+
+    helpers.updatePassword(employeeUpdate).then(function(nextLocation) {
+      if (nextLocation !== undefined) {
+        location.href = nextLocation;
+      }
+    });
   },
 
   render: function() {

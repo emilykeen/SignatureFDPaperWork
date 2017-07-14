@@ -74,13 +74,13 @@ var Handbook = React.createClass({
             onChange={this.props.handleChange} 
            
             />
-                    <img className="page" src="assets/images/401kBeneficiaryDesignationForm_1.jpeg" alt=""/>
+                    <img className="page" src="/assets/images/401kBeneficiaryDesignationForm_1.jpeg" alt=""/>
                 </div>
                 <div>
-                    <img className="page" src="assets/images/401kBeneficiaryDesignationForm_2.jpeg" alt=""/>
+                    <img className="page" src="/assets/images/401kBeneficiaryDesignationForm_2.jpeg" alt=""/>
                 </div>
                 <div>
-                    <img className="page" src="assets/images/401kBeneficiaryDesignationForm_3.jpeg" alt=""/>
+                    <img className="page" src="/assets/images/401kBeneficiaryDesignationForm_3.jpeg" alt=""/>
                 </div>
 
             </div>

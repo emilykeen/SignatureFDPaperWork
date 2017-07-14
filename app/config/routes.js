@@ -7,6 +7,7 @@ var Route = router.Route;
 var Router = router.Router;
 
 var hashHistory = router.hashHistory;
+var browserHistory = router.browserHistory;
 
 var IndexRoute = router.IndexRoute;
 
@@ -40,33 +41,33 @@ var SignatureFDSexualandOtherUnlawfulHarassmentPolicy = require("../components/f
 
 
 module.exports = (
-  <Router history={hashHistory}>
-    <Route component={IndexLayout}>
-      <Route path="/" component={Login} />
-      <Route path="update/password" component={UpdatePwd} />
+  <Router history={browserHistory}>
+    <Route path="/" component={IndexLayout}>
+      <Route path="auth/login" component={Login} />
+      <Route path="employee/update/password" component={UpdatePwd} />
       <Route path="admin" component={Admin} />
     </Route>
-    <Route component={EmployeeLayout}>
-      <Route path="employee/welcome" component={Welcome} />
-      <Route path="employee/PulseFitnessAgreement" component={PulseFitnessAgreement} />
-      <Route path="employee/SignatureFDEmployeeHandbook" component={SignatureFDEmployeeHandbook} />
-        <Route path="employee/401kBeneficiaryDesignationForm" component={kBeneficiaryDesignationForm} />
-        <Route path="employee/401kDirectionofInvestmentForm" component={kDirectionofInvestmentForm} />
-        <Route path="employee/401kSalaryDeferralAgreement" component={kSalaryDeferralAgreement} />
-        <Route path="employee/BenefitsGuideSigFD2017" component={BenefitsGuideSigFD2017} />
-        <Route path="employee/CellNumberandFirmDirectory-InformationRequest" component={CellNumberandFirmDirectoryInformationRequest} />
-        <Route path="employee/DependantCareApplication" component={DependantCareApplication} />
-        <Route path="employee/DependantCareFacilityStatement2017" component={DependantCareFacilityStatement2017} />
-        <Route path="employee/DependentCareAssistancePlan" component={DependentCareAssistancePlan} />
-        <Route path="employee/DirectDepositForm" component={DirectDepositForm} />
-        <Route path="employee/FormG4" component={FormG4} />
-        <Route path="employee/FormW4" component={FormW4} />
-        <Route path="employee/i-9-paper-version" component={i9paperversion} />
-        <Route path="employee/Lazparkingcontract-SignatureFD" component={LazparkingcontractSignatureFD} />
-        <Route path="employee/SignatureFDComputer&NetworkPolicyHandbook" component={SignatureFDComputerNetworkPolicyHandbook} />
-        <Route path="employee/SignatureFDInternetAccessPolicy" component={SignatureFDInternetAccessPolicy} />
-        <Route path="employee/SignatureFDReceiptAcknowledgement-EmployeeHandbook" component={SignatureFDReceiptAcknowledgementEmployeeHandbook} />
-        <Route path="employee/SignatureFDSexualandOtherUnlawfulHarassmentPolicy" component={SignatureFDSexualandOtherUnlawfulHarassmentPolicy} />
+    <Route path="employee" component={EmployeeLayout}>
+      <Route path="Welcome" component={Welcome} />
+      <Route path="PulseFitnessAgreement" component={PulseFitnessAgreement} />
+      <Route path="SignatureFDEmployeeHandbook" component={SignatureFDEmployeeHandbook} />
+      <Route path="401kBeneficiaryDesignationForm" component={kBeneficiaryDesignationForm} />
+      <Route path="401kDirectionofInvestmentForm" component={kDirectionofInvestmentForm} />
+      <Route path="401kSalaryDeferralAgreement" component={kSalaryDeferralAgreement} />
+      <Route path="BenefitsGuideSigFD2017" component={BenefitsGuideSigFD2017} />
+      <Route path="CellNumberandFirmDirectory-InformationRequest" component={CellNumberandFirmDirectoryInformationRequest} />
+      <Route path="DependantCareApplication" component={DependantCareApplication} />
+      <Route path="DependantCareFacilityStatement2017" component={DependantCareFacilityStatement2017} />
+      <Route path="DependentCareAssistancePlan" component={DependentCareAssistancePlan} />
+      <Route path="DirectDepositForm" component={DirectDepositForm} />
+      <Route path="FormG4" component={FormG4} />
+      <Route path="FormW4" component={FormW4} />
+      <Route path="i-9-paper-version" component={i9paperversion} />
+      <Route path="Lazparkingcontract-SignatureFD" component={LazparkingcontractSignatureFD} />
+      <Route path="SignatureFDComputer&NetworkPolicyHandbook" component={SignatureFDComputerNetworkPolicyHandbook} />
+      <Route path="SignatureFDInternetAccessPolicy" component={SignatureFDInternetAccessPolicy} />
+      <Route path="SignatureFDReceiptAcknowledgement-EmployeeHandbook" component={SignatureFDReceiptAcknowledgementEmployeeHandbook} />
+      <Route path="SignatureFDSexualandOtherUnlawfulHarassmentPolicy" component={SignatureFDSexualandOtherUnlawfulHarassmentPolicy} />
     </Route>
     
   </Router>

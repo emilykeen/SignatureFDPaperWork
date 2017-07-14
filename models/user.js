@@ -163,6 +163,9 @@ var UserSchema = new Schema({
     },
     Password: {
         type: String
+    },
+    isNewEmployee: {
+        type: Boolean
     }
 });
 

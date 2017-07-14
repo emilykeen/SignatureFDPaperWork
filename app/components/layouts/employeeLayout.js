@@ -31,8 +31,6 @@ var employeeLayout = React.createClass({
 
   componentDidMount: function() {
     helpers.getEmployeeData().then(function(employee) {
-      console.log(employee.data[0]);
-      console.log(employee.data[0].FirstName);
       this.setState({
         Date: employee.data[0].Date,
         FirstName: employee.data[0].FirstName,
@@ -80,6 +78,14 @@ var employeeLayout = React.createClass({
       console.log(status);
     });
   },
+
+  handleLogout: function(e) {
+    helpers.logout().then(function(newLocation) {
+      if (newLocation !== undefined)
+      location.href = newLocation;
+    });
+  },
+
 
     printPDF: function(){
 
@@ -173,37 +179,37 @@ var employeeLayout = React.createClass({
                 <ul className="collapsible collapsible-accordion">
                   <li className="bold active">
                     <a className="collapsible-header active waves-effect waves-brown FDbrownDark">
-                      <span className="FDblueText">User Name</span>
+                      <span className="FDblueText">{this.state.FirstName + " " + this.state.LastName}</span>
                     </a>
                     <div className="collapsible-body" style={{display: "block"}}>
                       <ul>
-                        <li><a href="#/update/password">Update Password</a></li>
-                        <li><a href="#/">Log Out</a></li>
+                        <li><a href="update/password">Update Password</a></li>
+                        <li><a href="" onClick={this.handleLogout}>Log Out</a></li>
                       </ul>
                     </div>
                   </li>
                 </ul>
                 <ul className="fa-ul">
-                  <li className="sideNavBtn" data='0'><a id='0' href="#/employee/welcome">Welcome</a></li>
-                  <li className="sideNavBtn" data='1'><a id='1' href="#/employee/SignatureFDEmployeeHandbook">Employee Handbook</a></li>
-                  <li className="sideNavBtn" data='2'><a id='2' href="#/employee/SignatureFDReceiptAcknowledgement-EmployeeHandbook">Handbook Receipt Acknowledgement</a></li>
-                  <li className="sideNavBtn" data='3'><a id='3' href="#/employee/BenefitsGuideSigFD2017">Benefits Guide</a></li>
-                  <li className="sideNavBtn" data='4'><a id='4' href="#/employee/401kBeneficiaryDesignationForm">401k Beneficiary Designation Form</a></li>
-                  <li className="sideNavBtn" data='5'><a id='5' href="#/employee/401kDirectionofInvestmentForm">401k Direction of Investment Form</a></li>
-                  <li className="sideNavBtn" data='6'><a id='6' href="#/employee/401kSalaryDeferralAgreement">401k Salary Deferral Agreement</a></li>
-                  <li className="sideNavBtn" data='7'><a id='7' href="#/employee/CellNumberandFirmDirectory-InformationRequest">Firm Directory Information Request</a></li>
-                  <li className="sideNavBtn" data='8'><a id='8' href="#/employee/DependantCareApplication">Dependant Care Application</a></li>
-                  <li className="sideNavBtn" data='9'><a id='9' href="#/employee/DependantCareFacilityStatement2017">Dependant Care Statement</a></li>
-                  <li className="sideNavBtn" data='10'><a id='10' href="#/employee/DependentCareAssistancePlan">Dependent Care Assistance Plan</a></li>
-                  <li className="sideNavBtn" data='11'><a id='11' href="#/employee/DirectDepositForm">Direct Deposit Form</a></li>
-                  <li className="sideNavBtn" data='12'><a id='12' href="#/employee/FormG4">G-4 Form</a></li>
-                  <li className="sideNavBtn" data='13'><a id='13' href="#/employee/FormW4">W-4 Form</a></li>
-                  <li className="sideNavBtn" data='14'><a id='14' href="#/employee/i-9-paper-version">I9 Form</a></li>
-                  <li className="sideNavBtn" data='15'><a id='15' href="#/employee/Lazparkingcontract-SignatureFD">Laz Parking Contract</a></li>
-                  <li className="sideNavBtn" data='16'><a id='16' href="#/employee/PulseFitnessAgreement">Pulse Fitness Agreement</a></li>
-                  <li className="sideNavBtn" data='17'><a id='17' href="#/employee/SignatureFDComputer&NetworkPolicyHandbook">Computer & Network Policy</a></li>
-                  <li className="sideNavBtn" data='18'><a id='18' href="#/employee/SignatureFDInternetAccessPolicy">Internet Access Policy</a></li>
-                  <li className="sideNavBtn" data='19'><a id='19' href="#/employee/SignatureFDSexualandOtherUnlawfulHarassmentPolicy">Unlawful Harassment Policy</a></li>
+                  <li className="sideNavBtn" data='0'><a id='0' href="Welcome">Welcome</a></li>
+                  <li className="sideNavBtn" data='1'><a id='1' href="SignatureFDEmployeeHandbook">Employee Handbook</a></li>
+                  <li className="sideNavBtn" data='2'><a id='2' href="SignatureFDReceiptAcknowledgement-EmployeeHandbook">Handbook Receipt Acknowledgement</a></li>
+                  <li className="sideNavBtn" data='3'><a id='3' href="BenefitsGuideSigFD2017">Benefits Guide</a></li>
+                  <li className="sideNavBtn" data='4'><a id='4' href="401kBeneficiaryDesignationForm">401k Beneficiary Designation Form</a></li>
+                  <li className="sideNavBtn" data='5'><a id='5' href="401kDirectionofInvestmentForm">401k Direction of Investment Form</a></li>
+                  <li className="sideNavBtn" data='6'><a id='6' href="401kSalaryDeferralAgreement">401k Salary Deferral Agreement</a></li>
+                  <li className="sideNavBtn" data='7'><a id='7' href="CellNumberandFirmDirectory-InformationRequest">Firm Directory Information Request</a></li>
+                  <li className="sideNavBtn" data='8'><a id='8' href="DependantCareApplication">Dependant Care Application</a></li>
+                  <li className="sideNavBtn" data='9'><a id='9' href="DependantCareFacilityStatement2017">Dependant Care Statement</a></li>
+                  <li className="sideNavBtn" data='10'><a id='10' href="DependentCareAssistancePlan">Dependent Care Assistance Plan</a></li>
+                  <li className="sideNavBtn" data='11'><a id='11' href="DirectDepositForm">Direct Deposit Form</a></li>
+                  <li className="sideNavBtn" data='12'><a id='12' href="FormG4">G-4 Form</a></li>
+                  <li className="sideNavBtn" data='13'><a id='13' href="FormW4">W-4 Form</a></li>
+                  <li className="sideNavBtn" data='14'><a id='14' href="i-9-paper-version">I9 Form</a></li>
+                  <li className="sideNavBtn" data='15'><a id='15' href="Lazparkingcontract-SignatureFD">Laz Parking Contract</a></li>
+                  <li className="sideNavBtn" data='16'><a id='16' href="PulseFitnessAgreement">Pulse Fitness Agreement</a></li>
+                  <li className="sideNavBtn" data='17'><a id='17' href="SignatureFDComputer&NetworkPolicyHandbook">Computer & Network Policy</a></li>
+                  <li className="sideNavBtn" data='18'><a id='18' href="SignatureFDInternetAccessPolicy">Internet Access Policy</a></li>
+                  <li className="sideNavBtn" data='19'><a id='19' href="SignatureFDSexualandOtherUnlawfulHarassmentPolicy">Unlawful Harassment Policy</a></li>
                 </ul>
               </ul>
             </div>
@@ -213,7 +219,7 @@ var employeeLayout = React.createClass({
                 <nav className="nav-extended  FDbrownLight" role="navigation">
                   <div className="container">
                     <div className="nav-wrapper">
-                      <a href="#" className="brand-logo"><img src="assets/images/logo-white.png" /></a>
+                      <a href="#" className="brand-logo"><img src="/assets/images/logo-white.png" /></a>
                       <a href="#" data-activates="nav-side" className="button-collapse"><i className="material-icons">menu</i></a>
                     </div>
                     <div>
@@ -240,7 +246,7 @@ var employeeLayout = React.createClass({
           <div className="container">
             <div className="row">
               <div className="col l5 s12">
-                <img src="assets/images/logo-white.png"/>
+                <img src="/assets/images/logo-white.png"/>
                 <p>
                   HEADQUARTERS<br />
                   1230 Peachtree Street, NE<br />

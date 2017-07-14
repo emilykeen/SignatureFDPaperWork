@@ -13,10 +13,11 @@ var Fitness = React.createClass({
               left: "49%",
               width: "20%",
               height: "2%"}} />
-                <img className="page" src="assets/images/PulseFitnessAgreement_1.jpeg" alt="" />
+          <img className="page" src="/assets/images/PulseFitnessAgreement_1.jpeg" alt="" />
+
         </div>
         <div>
-          <img className="page" src="assets/images/PulseFitnessAgreement_2.jpeg" alt="" />
+          <img className="page" src="/assets/images/PulseFitnessAgreement_2.jpeg" alt="" />
         </div>
         <div className="input-field">
         <input id="Signature" name="Signature"
@@ -139,10 +140,10 @@ var Fitness = React.createClass({
             value={this.props.appState.EmergencyContactRelationshipAndContact}
             onChange={this.props.handleChange} 
             />
-          <img className="page" src="assets/images/PulseFitnessAgreement_3.jpeg" alt="" />
+          <img className="page" src="/assets/images/PulseFitnessAgreement_3.jpeg" alt="" />
         </div>
         <div>
-          <img className="page" src="assets/images/PulseFitnessAgreement_4.jpeg" alt="" />
+          <img className="page" src="/assets/images/PulseFitnessAgreement_4.jpeg" alt="" />
         </div>
       </form>
     );

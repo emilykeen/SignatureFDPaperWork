@@ -12,26 +12,15 @@ var Login = React.createClass({
   },
 
   handleSubmit: function(e) {
-    e.preventDefault();
 
     var employeeCredentials = {
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value
+      email: document.getElementById("email").value.trim(),
+      password: document.getElementById("password").value.trim()
     };
 
-    helpers.authenticateUser(employeeCredentials).then(function(res) {
-      if (res === "employee") {
-        // console.log("validate emp token");
-        // helpers.validateEmpAccessToken().then(function(res) {
-        //   console.log(res);
-        // });
-        window.location = "#/update/password";
-      } else if (res === "admin") {
-        console.log("validate admin token");
-        // helpers.validateAdminAuthToken
-        window.location = "#/admin"
-      } else {
-        console.log(res);
+    helpers.authenticateUser(employeeCredentials).then(function(nextLocation) {
+      if (nextLocation !== undefined) {
+        location.href = nextLocation;
       }
     });
 

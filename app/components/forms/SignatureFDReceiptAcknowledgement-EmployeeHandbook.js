@@ -33,7 +33,7 @@ var Handbook = React.createClass({
               width: "31.5%",
               height: "2%"}} />
 
-          <img className="page" src="assets/images/SignatureFDReceiptAcknowledgement-EmployeeHandbook_1.jpeg" alt="" />
+          <img className="page" src="/assets/images/SignatureFDReceiptAcknowledgement-EmployeeHandbook_1.jpeg" alt="" />
         </div>
         </form>
     );

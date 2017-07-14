@@ -5,13 +5,13 @@ var Handbook = React.createClass({
     return (
       <div>
         <div>
-          <img className="page" src="assets/images/i-9-paper-version_1.jpeg" alt="" />
+          <img className="page" src="/assets/images/i-9-paper-version_1.jpeg" alt="" />
         </div>
         <div>
-          <img className="page" src="assets/images/i-9-paper-version2.jpeg" alt="" />
+          <img className="page" src="/assets/images/i-9-paper-version2.jpeg" alt="" />
         </div>
         <div>
-          <img className="page" src="assets/images/i-9-paper-version_3.jpeg" alt="" />
+          <img className="page" src="/assets/images/i-9-paper-version_3.jpeg" alt="" />
         </div>
       </div>
     );

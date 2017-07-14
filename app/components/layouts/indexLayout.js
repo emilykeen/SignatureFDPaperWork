@@ -10,7 +10,7 @@ var indexLayout = React.createClass({
             <nav className="nav-extended  FDbrownLight white-text" role="navigation">
               <div className="container">
                 <div className="nav-wrapper">
-                  <a href="#" className="brand-logo"><img src="assets/images/logo-white.png" /></a>
+                  <a href="#" className="brand-logo"><img src="/assets/images/logo-white.png" /></a>
                 </div>
               </div>
             </nav>
@@ -26,7 +26,7 @@ var indexLayout = React.createClass({
           <div className="container">
             <div className="row">
               <div className="col l5 s12">
-                <img src="assets/images/logo-white.png" />
+                <img src="/assets/images/logo-white.png" />
                 <p>
                   HEADQUARTERS<br />
                   1230 Peachtree Street, NE<br />
